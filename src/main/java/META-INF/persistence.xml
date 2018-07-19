@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="NewPersistenceUnit">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>by.ramok.kasbi.entities.Customer</class>
+        <class>by.ramok.kasbi.entities.Good</class>
+        <class>by.ramok.kasbi.entities.GoodGroup</class>
+        <class>by.ramok.kasbi.entities.GoodType</class>
+        <class>by.ramok.kasbi.entities.Unn</class>
+        <class>by.ramok.kasbi.entities.CashHistory</class>
+        <class>by.ramok.kasbi.entities.Sale</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:sqlserver://localhost:1433;database=Ramok"/>
+            <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="hibernate.connection.username" value=""/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
