@@ -8,7 +8,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "cash_history", schema = "dbo", catalog = "Ramok")
 public class CashHistory {
-    private int sysId;
+    private Integer sysId;
     private Integer goodSysId;
     private Integer ownerSysId;
     private String markaCtoIn;
@@ -51,11 +51,11 @@ public class CashHistory {
 
     @Id
     @Column(name = "sys_id")
-    public int getSysId() {
+    public Integer getSysId() {
         return sysId;
     }
 
-    public void setSysId(int sysId) {
+    public void setSysId(Integer sysId) {
         this.sysId = sysId;
     }
 
@@ -454,7 +454,7 @@ public class CashHistory {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CashHistory that = (CashHistory) o;
-        return sysId == that.sysId &&
+        return Objects.equals(sysId, that.sysId) &&
                 Objects.equals(goodSysId, that.goodSysId) &&
                 Objects.equals(ownerSysId, that.ownerSysId) &&
                 Objects.equals(markaCtoIn, that.markaCtoIn) &&

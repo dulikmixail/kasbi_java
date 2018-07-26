@@ -6,18 +6,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "good_group", schema = "dbo", catalog = "Ramok")
 public class GoodGroup {
-    private int goodGroupSysId;
+    private Integer goodGroupSysId;
     private String name;
     private String description;
     private Boolean isShow;
 
     @Id
     @Column(name = "good_group_sys_id")
-    public int getGoodGroupSysId() {
+    public Integer getGoodGroupSysId() {
         return goodGroupSysId;
     }
 
-    public void setGoodGroupSysId(int goodGroupSysId) {
+    public void setGoodGroupSysId(Integer goodGroupSysId) {
         this.goodGroupSysId = goodGroupSysId;
     }
 
@@ -56,7 +56,7 @@ public class GoodGroup {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GoodGroup goodGroup = (GoodGroup) o;
-        return goodGroupSysId == goodGroup.goodGroupSysId &&
+        return Objects.equals(goodGroupSysId, goodGroup.goodGroupSysId) &&
                 Objects.equals(name, goodGroup.name) &&
                 Objects.equals(description, goodGroup.description) &&
                 Objects.equals(isShow, goodGroup.isShow);

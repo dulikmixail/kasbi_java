@@ -1,13 +1,13 @@
 package by.ramok.kasbi.service.impl;
 
 import by.ramok.kasbi.entities.Customer;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface CustomerServiceImpl {
-    List<Customer> getAllCustomers();
+    Page<Customer> getAllCustomers(Pageable pageable);
 
-    Customer getCustomerByUnp(String unp);
+    Page<Customer>  getCustomerByCustomer(Customer customer, Pageable pageable);
 
-    Customer getCustomer(int id);
+    Customer getCustomerById(int id);
 }

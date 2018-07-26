@@ -9,8 +9,8 @@ import java.util.Objects;
 
 @Entity
 public class Sale {
-    private int saleSysId;
-    private int customerSysId;
+    private Integer saleSysId;
+    private Integer customerSysId;
     private Date saleDate;
     private Short state;
     private Short type;
@@ -20,27 +20,27 @@ public class Sale {
     private String dogovor;
     private String proxy;
     private Date d;
-    private int firmSysId;
+    private Integer firmSysId;
     private Long id1C;
     private Integer buhSysId;
 
     @Id
     @Column(name = "sale_sys_id")
-    public int getSaleSysId() {
+    public Integer getSaleSysId() {
         return saleSysId;
     }
 
-    public void setSaleSysId(int saleSysId) {
+    public void setSaleSysId(Integer saleSysId) {
         this.saleSysId = saleSysId;
     }
 
     @Basic
     @Column(name = "customer_sys_id")
-    public int getCustomerSysId() {
+    public Integer getCustomerSysId() {
         return customerSysId;
     }
 
-    public void setCustomerSysId(int customerSysId) {
+    public void setCustomerSysId(Integer customerSysId) {
         this.customerSysId = customerSysId;
     }
 
@@ -136,11 +136,11 @@ public class Sale {
 
     @Basic
     @Column(name = "firm_sys_id")
-    public int getFirmSysId() {
+    public Integer getFirmSysId() {
         return firmSysId;
     }
 
-    public void setFirmSysId(int firmSysId) {
+    public void setFirmSysId(Integer firmSysId) {
         this.firmSysId = firmSysId;
     }
 
@@ -169,9 +169,8 @@ public class Sale {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sale sale = (Sale) o;
-        return saleSysId == sale.saleSysId &&
-                customerSysId == sale.customerSysId &&
-                firmSysId == sale.firmSysId &&
+        return Objects.equals(saleSysId, sale.saleSysId) &&
+                Objects.equals(customerSysId, sale.customerSysId) &&
                 Objects.equals(saleDate, sale.saleDate) &&
                 Objects.equals(state, sale.state) &&
                 Objects.equals(type, sale.type) &&
@@ -181,6 +180,7 @@ public class Sale {
                 Objects.equals(dogovor, sale.dogovor) &&
                 Objects.equals(proxy, sale.proxy) &&
                 Objects.equals(d, sale.d) &&
+                Objects.equals(firmSysId, sale.firmSysId) &&
                 Objects.equals(id1C, sale.id1C) &&
                 Objects.equals(buhSysId, sale.buhSysId);
     }

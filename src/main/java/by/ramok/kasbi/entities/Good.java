@@ -7,9 +7,9 @@ import java.util.Objects;
 @Entity
 @IdClass(GoodPK.class)
 public class Good {
-    private int goodSysId;
-    private int goodTypeSysId;
-    private int deliverySysId;
+    private Integer goodSysId;
+    private Integer goodTypeSysId;
+    private Integer deliverySysId;
     private Integer saleSysId;
     private Double price;
     private String numCashregister;
@@ -24,10 +24,10 @@ public class Good {
     private String setPlace;
     private String kassir1;
     private String kassir2;
-    private short state;
+    private Short state;
     private String info;
     private String pricelistSysId;
-    private int goodKey;
+    private Integer goodKey;
     private Integer worker;
     private Timestamp d;
     private Boolean support;
@@ -36,33 +36,34 @@ public class Good {
     private Boolean confirmed;
     private Boolean inrepair;
 
+
     @Id
     @Column(name = "good_sys_id")
-    public int getGoodSysId() {
+    public Integer getGoodSysId() {
         return goodSysId;
     }
 
-    public void setGoodSysId(int goodSysId) {
+    public void setGoodSysId(Integer goodSysId) {
         this.goodSysId = goodSysId;
     }
 
     @Basic
     @Column(name = "good_type_sys_id")
-    public int getGoodTypeSysId() {
+    public Integer getGoodTypeSysId() {
         return goodTypeSysId;
     }
 
-    public void setGoodTypeSysId(int goodTypeSysId) {
+    public void setGoodTypeSysId(Integer goodTypeSysId) {
         this.goodTypeSysId = goodTypeSysId;
     }
 
     @Basic
     @Column(name = "delivery_sys_id")
-    public int getDeliverySysId() {
+    public Integer getDeliverySysId() {
         return deliverySysId;
     }
 
-    public void setDeliverySysId(int deliverySysId) {
+    public void setDeliverySysId(Integer deliverySysId) {
         this.deliverySysId = deliverySysId;
     }
 
@@ -208,11 +209,11 @@ public class Good {
 
     @Id
     @Column(name = "state")
-    public short getState() {
+    public Short getState() {
         return state;
     }
 
-    public void setState(short state) {
+    public void setState(Short state) {
         this.state = state;
     }
 
@@ -238,11 +239,11 @@ public class Good {
 
     @Id
     @Column(name = "good_key")
-    public int getGoodKey() {
+    public Integer getGoodKey() {
         return goodKey;
     }
 
-    public void setGoodKey(int goodKey) {
+    public void setGoodKey(Integer goodKey) {
         this.goodKey = goodKey;
     }
 
@@ -321,11 +322,9 @@ public class Good {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Good good = (Good) o;
-        return goodSysId == good.goodSysId &&
-                goodTypeSysId == good.goodTypeSysId &&
-                deliverySysId == good.deliverySysId &&
-                state == good.state &&
-                goodKey == good.goodKey &&
+        return Objects.equals(goodSysId, good.goodSysId) &&
+                Objects.equals(goodTypeSysId, good.goodTypeSysId) &&
+                Objects.equals(deliverySysId, good.deliverySysId) &&
                 Objects.equals(saleSysId, good.saleSysId) &&
                 Objects.equals(price, good.price) &&
                 Objects.equals(numCashregister, good.numCashregister) &&
@@ -340,8 +339,10 @@ public class Good {
                 Objects.equals(setPlace, good.setPlace) &&
                 Objects.equals(kassir1, good.kassir1) &&
                 Objects.equals(kassir2, good.kassir2) &&
+                Objects.equals(state, good.state) &&
                 Objects.equals(info, good.info) &&
                 Objects.equals(pricelistSysId, good.pricelistSysId) &&
+                Objects.equals(goodKey, good.goodKey) &&
                 Objects.equals(worker, good.worker) &&
                 Objects.equals(d, good.d) &&
                 Objects.equals(support, good.support) &&

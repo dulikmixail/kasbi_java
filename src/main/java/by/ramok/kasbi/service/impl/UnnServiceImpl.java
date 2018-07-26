@@ -1,13 +1,17 @@
 package by.ramok.kasbi.service.impl;
 
 import by.ramok.kasbi.entities.Unn;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface UnnServiceImpl {
-    List<Unn> getAllUnns();
+    Page<Unn> getAllUnns(Pageable pageable);
 
-    Unn getDebt(int id);
+    Unn getDebtById(int id);
+
+    Page<Unn> getDebtByUnn(Unn unn, Pageable pageable);
 
     Unn getDebtByUnn(String unn);
+
+    Unn getDebtByUnn(Unn unn);
 }

@@ -1,35 +1,43 @@
 package by.ramok.kasbi.service;
 
-import by.ramok.kasbi.dao.ICustomerDAO;
 import by.ramok.kasbi.entities.Customer;
+import by.ramok.kasbi.exceptions.NotFoundException;
+import by.ramok.kasbi.exceptions.ResourceNotFoundException;
+import by.ramok.kasbi.exceptions.WrongParameters;
+import by.ramok.kasbi.repository.CustomerRepository;
 import by.ramok.kasbi.service.impl.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class CustomerService implements CustomerServiceImpl {
 
     @Autowired
-    private ICustomerDAO customerDAO;
+    private CustomerRepository customerRepository;
 
     @Override
-    public List<Customer> getAllCustomers() {
-        List<Customer> entities = customerDAO.readAll();
-        return entities;
+    public Page<Customer> getAllCustomers(Pageable pageable) {
+        Page<Customer> customerPage = customerRepository.findAll(pageable);
+        if (customerPage.getContent().size() == 0) throw new WrongParameters();
+        return customerPage;
     }
 
     @Override
-    public Customer getCustomerByUnp(String unp) {
-        Customer customer = customerDAO.getCustomerByUnp(unp);
-        return customer;
+    public Page<Customer> getCustomerByCustomer(Customer customer, Pageable pageable) {
+        ExampleMatcher exampleMatcher = ExampleMatcher.matching().withIgnoreNullValues();
+        Example<Customer> example = Example.of(customer, exampleMatcher);
+        Page<Customer> customerList = customerRepository.findAll(example,pageable);
+        if (customerList.getContent().size() == 0) throw new ResourceNotFoundException();
+        return customerList;
     }
 
     @Override
-    public Customer getCustomer(int id) {
-        Customer customer = customerDAO.getCustomer(id);
-        return customer;
+    public Customer getCustomerById(int id) {
+        return customerRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
 }

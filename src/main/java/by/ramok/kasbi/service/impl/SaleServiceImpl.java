@@ -1,13 +1,14 @@
 package by.ramok.kasbi.service.impl;
 
 import by.ramok.kasbi.entities.Sale;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
 public interface SaleServiceImpl {
-    List<Sale> getAllSales();
-
-    Sale addSale(Sale sale);
+    Page<Sale> getAllSales(Pageable pageable);
 
     Sale getSaleById(int id);
+
+    Page<Sale> getSaleBySale(Sale sale, Pageable pageable);
 }

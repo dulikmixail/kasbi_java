@@ -6,37 +6,37 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class GoodPK implements Serializable {
-    private int goodSysId;
-    private short state;
-    private int goodKey;
+    private Integer goodSysId;
+    private Short state;
+    private Integer goodKey;
 
     @Column(name = "good_sys_id")
     @Id
-    public int getGoodSysId() {
+    public Integer getGoodSysId() {
         return goodSysId;
     }
 
-    public void setGoodSysId(int goodSysId) {
+    public void setGoodSysId(Integer goodSysId) {
         this.goodSysId = goodSysId;
     }
 
     @Column(name = "state")
     @Id
-    public short getState() {
+    public Short getState() {
         return state;
     }
 
-    public void setState(short state) {
+    public void setState(Short state) {
         this.state = state;
     }
 
     @Column(name = "good_key")
     @Id
-    public int getGoodKey() {
+    public Integer getGoodKey() {
         return goodKey;
     }
 
-    public void setGoodKey(int goodKey) {
+    public void setGoodKey(Integer goodKey) {
         this.goodKey = goodKey;
     }
 
@@ -45,9 +45,9 @@ public class GoodPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GoodPK goodPK = (GoodPK) o;
-        return goodSysId == goodPK.goodSysId &&
-                state == goodPK.state &&
-                goodKey == goodPK.goodKey;
+        return Objects.equals(goodSysId, goodPK.goodSysId) &&
+                Objects.equals(state, goodPK.state) &&
+                Objects.equals(goodKey, goodPK.goodKey);
     }
 
     @Override

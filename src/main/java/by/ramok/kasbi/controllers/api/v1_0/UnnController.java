@@ -1,40 +1,44 @@
 package by.ramok.kasbi.controllers.api.v1_0;
 
-
 import by.ramok.kasbi.controllers.api.Props;
 import by.ramok.kasbi.entities.Unn;
-import by.ramok.kasbi.exceptions.ResourceNotFoundException;
 import by.ramok.kasbi.service.UnnService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping(Props.API_V1_0 + "/debts")
 public class UnnController {
 
     @Autowired
-    UnnService service;
+    UnnService unnService;
 
     @RequestMapping(value = {"", "/all"}, method = RequestMethod.GET, produces = "application/json")
-    public List<Unn> readAll() {
-        List<Unn> unns = service.getAllUnns();
-        if (unns.size() == 0) throw new ResourceNotFoundException();
-        return unns;
+    public Page<Unn> readAll(Pageable pageable) {
+        return unnService.getAllUnns(pageable);
     }
 
-    @RequestMapping(value = "/filter", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json")
-    public Unn getByUnp(@RequestParam String unn) {
-        Unn debt = service.getDebtByUnn(unn);
-        if (debt == null) throw new ResourceNotFoundException();
-        return debt;
+    @RequestMapping(value = "/filter", method = RequestMethod.POST, produces = "application/json")
+    public Page<Unn> getByUnpPost(@RequestBody Unn unn, Pageable pageable) {
+        return unnService.getDebtByUnn(unn, pageable);
+    }
+
+    @RequestMapping(value = "/one", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE}, produces = "application/json")
+    public Unn getByUnpGet(@RequestParam String unn) {
+        return unnService.getDebtByUnn(unn);
+    }
+
+    @RequestMapping(value = "/one", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE}, produces = "application/json")
+    public Unn getByUnpGet(@RequestBody Unn unn) {
+        return unnService.getDebtByUnn(unn);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = "application/json")
     public Unn read(@PathVariable int id) {
-        Unn debt = service.getDebt(id);
-        if (debt == null) throw new ResourceNotFoundException();
-        return debt;
+        return unnService.getDebtById(id);
     }
 }

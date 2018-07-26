@@ -1,5 +1,7 @@
 package by.ramok.kasbi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,13 +9,13 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class Unn {
+public class    Unn {
     private String unn;
     private Integer inbase;
     private Integer in1C;
     private String name;
     private String dolg;
-    private int unnSysId;
+    private Integer unnSysId;
 
     @Basic
     @Column(name = "unn")
@@ -27,6 +29,7 @@ public class Unn {
 
     @Basic
     @Column(name = "inbase")
+    @JsonIgnore
     public Integer getInbase() {
         return inbase;
     }
@@ -37,6 +40,7 @@ public class Unn {
 
     @Basic
     @Column(name = "in1c")
+    @JsonIgnore
     public Integer getIn1C() {
         return in1C;
     }
@@ -67,11 +71,11 @@ public class Unn {
 
     @Id
     @Column(name = "unn_sys_id")
-    public int getUnnSysId() {
+    public Integer getUnnSysId() {
         return unnSysId;
     }
 
-    public void setUnnSysId(int unnSysId) {
+    public void setUnnSysId(Integer unnSysId) {
         this.unnSysId = unnSysId;
     }
 
@@ -80,12 +84,12 @@ public class Unn {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Unn unn1 = (Unn) o;
-        return unnSysId == unn1.unnSysId &&
-                Objects.equals(unn, unn1.unn) &&
+        return Objects.equals(unn, unn1.unn) &&
                 Objects.equals(inbase, unn1.inbase) &&
                 Objects.equals(in1C, unn1.in1C) &&
                 Objects.equals(name, unn1.name) &&
-                Objects.equals(dolg, unn1.dolg);
+                Objects.equals(dolg, unn1.dolg) &&
+                Objects.equals(unnSysId, unn1.unnSysId);
     }
 
     @Override

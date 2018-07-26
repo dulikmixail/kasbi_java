@@ -1,5 +1,7 @@
 package by.ramok.kasbi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,7 @@ import java.util.Objects;
 
 @Entity
 public class Customer {
-    private int customerSysId;
+    private Integer customerSysId;
     private String customerAbr;
     private String customerName;
     private String boosLastName;
@@ -53,11 +55,11 @@ public class Customer {
 
     @Id
     @Column(name = "customer_sys_id")
-    public int getCustomerSysId() {
+    public Integer getCustomerSysId() {
         return customerSysId;
     }
 
-    public void setCustomerSysId(int customerSysId) {
+    public void setCustomerSysId(Integer customerSysId) {
         this.customerSysId = customerSysId;
     }
 
@@ -373,6 +375,7 @@ public class Customer {
 
     @Basic
     @Column(name = "support_sys_id")
+    @JsonIgnore
     public Integer getSupportSysId() {
         return supportSysId;
     }
@@ -383,6 +386,7 @@ public class Customer {
 
     @Basic
     @Column(name = "d")
+    @JsonIgnore
     public Date getD() {
         return d;
     }
@@ -413,6 +417,7 @@ public class Customer {
 
     @Basic
     @Column(name = "Advertise_id")
+    @JsonIgnore
     public Integer getAdvertiseId() {
         return advertiseId;
     }
@@ -466,7 +471,7 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return customerSysId == customer.customerSysId &&
+        return Objects.equals(customerSysId, customer.customerSysId) &&
                 Objects.equals(customerAbr, customer.customerAbr) &&
                 Objects.equals(customerName, customer.customerName) &&
                 Objects.equals(boosLastName, customer.boosLastName) &&
