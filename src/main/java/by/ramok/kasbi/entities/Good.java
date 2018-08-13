@@ -1,5 +1,7 @@
 package by.ramok.kasbi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -36,7 +38,6 @@ public class Good {
     private Boolean confirmed;
     private Boolean inrepair;
 
-
     @Id
     @Column(name = "good_sys_id")
     public Integer getGoodSysId() {
@@ -49,6 +50,7 @@ public class Good {
 
     @Basic
     @Column(name = "good_type_sys_id")
+
     public Integer getGoodTypeSysId() {
         return goodTypeSysId;
     }
@@ -159,6 +161,7 @@ public class Good {
 
     @Basic
     @Column(name = "param_str")
+    @JsonIgnore
     public String getParamStr() {
         return paramStr;
     }

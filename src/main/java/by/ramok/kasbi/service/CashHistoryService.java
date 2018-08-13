@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class CashHistoryService implements CashHistoryServiceImpl {
 
     @Autowired
@@ -42,7 +42,12 @@ public class CashHistoryService implements CashHistoryServiceImpl {
     }
 
     @Override
-    public Page<CashHistory> findAllRepairByUnn(String unn, Pageable pageable) {
-        return cashHistoryRepository.findAllRepairByUnn(unn, pageable);
+    public Page<CashHistory> findAllRepairByUnnPage(String unn, Pageable pageable) {
+        return cashHistoryRepository.findAllRepairByUnnPage(unn, pageable);
+    }
+
+    @Override
+    public List<CashHistory> findAllRepairByUnnList(String unn) {
+        return cashHistoryRepository.findAllRepairByUnnList(unn);
     }
 }

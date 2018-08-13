@@ -17,14 +17,14 @@ public class GoodController {
     @Autowired
     GoodService goodService;
 
-    @RequestMapping(value = {"cr_on_to", ""}, method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = {"cr_on_to"}, method = RequestMethod.GET, produces = "application/json")
     public Page<Good> getCashRegistersOnToPage(@RequestParam String unn, Pageable pageable) {
-        return goodService.getCashRegisterOnTOByUnnPage(unn, pageable);
+        return goodService.getCashRegistersOnTOByUnnPage(unn, pageable);
     }
 
-    @RequestMapping(value = {"cr_on_to/list", ""}, method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = {"cr_on_to/list"}, method = RequestMethod.GET, produces = "application/json")
     public List<Good> getCashRegistersOnToList(@RequestParam String unn) {
-        return goodService.getCashRegisterOnTOByUnnList(unn);
+        return goodService.getCashRegistersOnTOByUnnList(unn);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = "application/json")
@@ -32,5 +32,9 @@ public class GoodController {
         return goodService.getGoodById(id);
     }
 
+    @RequestMapping(value = {"", "/all"}, method = RequestMethod.GET, produces = "application/json")
+    public Page<Good> readAll(Pageable pageable) {
+        return goodService.getAllGoods(pageable);
+    }
 
 }

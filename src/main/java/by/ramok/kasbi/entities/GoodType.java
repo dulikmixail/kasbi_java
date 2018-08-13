@@ -1,5 +1,7 @@
 package by.ramok.kasbi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -53,6 +55,7 @@ public class GoodType {
 
     @Basic
     @Column(name = "param_str_description")
+    @JsonIgnore
     public String getParamStrDescription() {
         return paramStrDescription;
     }
@@ -63,6 +66,7 @@ public class GoodType {
 
     @Basic
     @Column(name = "param_num_description")
+    @JsonIgnore
     public String getParamNumDescription() {
         return paramNumDescription;
     }
@@ -73,6 +77,7 @@ public class GoodType {
 
     @Basic
     @Column(name = "info")
+    @JsonIgnore
     public String getInfo() {
         return info;
     }
@@ -83,6 +88,7 @@ public class GoodType {
 
     @Basic
     @Column(name = "nadbavka")
+    @JsonIgnore
     public Boolean getNadbavka() {
         return nadbavka;
     }
@@ -93,6 +99,7 @@ public class GoodType {
 
     @Basic
     @Column(name = "allowCTO")
+    @JsonIgnore
     public Boolean getAllowCto() {
         return allowCto;
     }
@@ -123,6 +130,7 @@ public class GoodType {
 
     @Basic
     @Column(name = "country")
+    @JsonIgnore
     public String getCountry() {
         return country;
     }
@@ -133,6 +141,7 @@ public class GoodType {
 
     @Basic
     @Column(name = "price_to")
+    @JsonIgnore
     public String getPriceTo() {
         return priceTo;
     }
@@ -153,6 +162,7 @@ public class GoodType {
 
     @Basic
     @Column(name = "idp")
+    @JsonIgnore
     public Long getIdp() {
         return idp;
     }

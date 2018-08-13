@@ -27,14 +27,14 @@ public class UnnController {
         return unnService.getDebtByUnn(unn, pageable);
     }
 
-    @RequestMapping(value = "/one", method = {RequestMethod.GET, RequestMethod.POST}, consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE}, produces = "application/json")
+    @RequestMapping(value = "/one", method = RequestMethod.GET, produces = "application/json")
     public Unn getByUnpGet(@RequestParam String unn) {
         return unnService.getDebtByUnn(unn);
     }
 
     @RequestMapping(value = "/one", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE}, produces = "application/json")
-    public Unn getByUnpGet(@RequestBody Unn unn) {
-        return unnService.getDebtByUnn(unn);
+    public Unn getByUnpGet(@RequestBody Unn dept) {
+        return unnService.getDebtByUnn(dept);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = "application/json")

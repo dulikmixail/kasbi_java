@@ -137,7 +137,8 @@ public class Customer {
     @Column(name = "okpo")
     public String getOkpo() {
         return okpo;
-    }
+    }    @JsonIgnore
+
 
     public void setOkpo(String okpo) {
         this.okpo = okpo;

@@ -8,8 +8,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CashHistoryRepository extends JpaRepository<CashHistory, Integer> {
-    @Query(value = "select ch from CashHistory ch where ch.ownerSysId in (select c.customerSysId from Customer c where c.unn=:unn) and ch.state=4")
-    Page<CashHistory> findAllRepairByUnn(@Param("unn") String unn, Pageable pageable);
+    @Query(value = "select ch from CashHistory ch where ch.ownerSysId in (select c.customerSysId from Customer c where c.unn=:unn) and ch.state=5")
+    Page<CashHistory> findAllRepairByUnnPage(@Param("unn") String unn, Pageable pageable);
+
+    @Query(value = "select ch from CashHistory ch where ch.ownerSysId = (select c.customerSysId from Customer c where c.unn=:unn) and ch.state=5")
+    List<CashHistory> findAllRepairByUnnList(@Param("unn") String unn);
 }

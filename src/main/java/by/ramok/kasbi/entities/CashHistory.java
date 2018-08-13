@@ -1,5 +1,7 @@
 package by.ramok.kasbi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -221,6 +223,7 @@ public class CashHistory {
 
     @Basic
     @Column(name = "itog_in")
+    @JsonIgnore
     public Long getItogIn() {
         return itogIn;
     }
@@ -231,6 +234,7 @@ public class CashHistory {
 
     @Basic
     @Column(name = "itog_out")
+    @JsonIgnore
     public Long getItogOut() {
         return itogOut;
     }
@@ -301,6 +305,7 @@ public class CashHistory {
 
     @Basic
     @Column(name = "dismissal_date")
+    @JsonIgnore
     public Timestamp getDismissalDate() {
         return dismissalDate;
     }
@@ -311,6 +316,7 @@ public class CashHistory {
 
     @Basic
     @Column(name = "support_date")
+    @JsonIgnore
     public Timestamp getSupportDate() {
         return supportDate;
     }
@@ -381,6 +387,7 @@ public class CashHistory {
 
     @Basic
     @Column(name = "sale_id")
+    @JsonIgnore
     public Integer getSaleId() {
         return saleId;
     }
@@ -431,6 +438,7 @@ public class CashHistory {
 
     @Basic
     @Column(name = "workNotCall")
+    @JsonIgnore
     public Boolean getWorkNotCall() {
         return workNotCall;
     }
@@ -441,6 +449,7 @@ public class CashHistory {
 
     @Basic
     @Column(name = "repare_in_info")
+    @JsonIgnore
     public String getRepareInInfo() {
         return repareInInfo;
     }

@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping(Props.API_V1_0 + "/cash_histories")
@@ -32,7 +34,12 @@ public class CashHistoryController {
 
     @RequestMapping(value = "/repairs", method = RequestMethod.GET, produces = "application/json")
     public Page<CashHistory> getRepairsPage(@RequestParam String unn, Pageable pageable) {
-        return cashHistoryService.findAllRepairByUnn(unn, pageable);
+        return cashHistoryService.findAllRepairByUnnPage(unn, pageable);
+    }
+
+    @RequestMapping(value = "/repairs/list", method = RequestMethod.GET, produces = "application/json")
+    public List<CashHistory> getRepairsList(@RequestParam String unn) {
+        return cashHistoryService.findAllRepairByUnnList(unn);
     }
 
 }

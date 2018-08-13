@@ -12,5 +12,6 @@ public interface CashHistoryServiceImpl {
     CashHistory getCashHistory(int id);
 
     List<CashHistory> getCashHistoryByGoodId(int goodId);
-    Page<CashHistory> findAllRepairByUnn(String unn, Pageable pageable);
+    Page<CashHistory> findAllRepairByUnnPage(String unn, Pageable pageable);
+    List<CashHistory> findAllRepairByUnnList(String unn);
 }
