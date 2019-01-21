@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(Props.API_V1_0 + "/debts")
 public class UnnController {
 
+    private final UnnService unnService;
+
     @Autowired
-    UnnService unnService;
+    public UnnController(UnnService unnService) {
+        this.unnService = unnService;
+    }
 
     @RequestMapping(value = {"", "/all"}, method = RequestMethod.GET, produces = "application/json")
     public Page<Unn> readAll(Pageable pageable) {

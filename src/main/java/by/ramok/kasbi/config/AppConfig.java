@@ -11,8 +11,12 @@ package by.ramok.kasbi.config;
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
 
+    private final RequestInterceptor requestInterceptor;
+
     @Autowired
-    RequestInterceptor requestInterceptor;
+    public AppConfig(RequestInterceptor requestInterceptor) {
+        this.requestInterceptor = requestInterceptor;
+    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

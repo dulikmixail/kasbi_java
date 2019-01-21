@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(Props.API_V1_0 + "/sales")
 public class SaleController {
 
+    private final SaleService saleService;
+
     @Autowired
-    SaleService saleService;
+    public SaleController(SaleService saleService) {
+        this.saleService = saleService;
+    }
 
     @RequestMapping(value = {"", "/all"}, method = RequestMethod.GET, produces = "application/json")
     public Page<Sale> readAll(Pageable pageable) {
