@@ -13,22 +13,47 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping(Props.API_V1_0 + "/docs")
 public class DocumentsController {
 
-    @Autowired
-    DocumentsService documentsService;
+    private final DocumentsService documentsService;
 
+    @Autowired
+    public DocumentsController(DocumentsService documentsService) {
+        this.documentsService = documentsService;
+    }
 
     @RequestMapping(value = "/akt_repair_realization", method = RequestMethod.GET)
-    public ResponseEntity getDoc(@RequestParam int h, @RequestParam int g, @RequestParam int c) throws IOException {
+    public ResponseEntity getAktRepairRealization(@RequestParam int h, @RequestParam int g, @RequestParam int c) throws IOException {
 
-        Resource documentConnection = documentsService.getDocumentConnection(h, g, c);
+        HashMap<String, Integer> params = new HashMap<>();
+        params.put("h", h);
+        params.put("g", g);
+        params.put("c", c);
+
+        Resource documentConnection = documentsService.getDocumentResource(32, params);
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + "akt_repair_realization.doc" + "\"")
                 .contentType(MediaType.parseMediaType("application/msword"))
                 .body(documentConnection);
     }
+
+    @RequestMapping(value = "/akt_of_to_and_dolg", method = RequestMethod.GET)
+    public ResponseEntity getAktTO(@RequestParam int g, @RequestParam int d) throws IOException {
+
+        HashMap<String, Integer> params = new HashMap<>();
+        params.put("g", g);
+        params.put("d", d);
+
+        Resource documentConnection = documentsService.getDocumentResource(60, params);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + "akt_of_to_and_dolg.doc" + "\"")
+                .contentType(MediaType.parseMediaType("application/msword"))
+                .body(documentConnection);
+    }
+
+
 }

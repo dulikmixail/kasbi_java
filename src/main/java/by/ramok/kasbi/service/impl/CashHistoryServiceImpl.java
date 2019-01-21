@@ -12,6 +12,20 @@ public interface CashHistoryServiceImpl {
     CashHistory getCashHistory(int id);
 
     List<CashHistory> getCashHistoryByGoodId(int goodId);
+
     Page<CashHistory> findAllRepairByUnnPage(String unn, Pageable pageable);
+
     List<CashHistory> findAllRepairByUnnList(String unn);
+
+    Page<CashHistory> findAllTOsByUnnPage(String unn, Pageable pageable);
+
+    List<CashHistory> findAllTOsByUnnList(String unn);
+
+    Page<CashHistory> findAllRepairByUnnAndGoodIdPage(int goodId, String unn, Pageable pageable);
+
+    List<CashHistory> findAllRepairByUnnAndGoodIdList(int goodId, String unn);
+
+    Page<CashHistory> findAllTOByUnnAndGoodIdPage(int goodId, String unn, Pageable pageable);
+
+    List<CashHistory> findAllTOByUnnAndGoodIdList(int goodId, String unn);
 }

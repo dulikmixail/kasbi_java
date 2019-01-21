@@ -12,5 +12,6 @@ public interface GoodServiceImpl {
     Page<Good> getRepairsByUnnPage(String unn, Pageable pageable);
     List<Good> getRepairsOnTOByUnnList(String unn);
     Good getGoodById(Integer id);
+    List<Good> getListGoodById(List<Integer> ids);
     Page<Good> getAllGoods(Pageable pageable);
 }

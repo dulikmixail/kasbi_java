@@ -8,17 +8,28 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping(Props.API_V1_0 + "/customers")
 public class CustomerController {
 
+    private final CustomerService customerService;
+
     @Autowired
-    CustomerService customerService;
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @RequestMapping(value = {"", "/all"}, method = RequestMethod.GET, produces = "application/json")
-    public Page<Customer> readAll(Pageable pageable) {
-        return customerService.getAllCustomers(pageable);
+    public Page<Customer> readAllPage(Pageable pageable) {
+        return customerService.getAllCustomersPage(pageable);
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
+    public List<Customer> readAllList() {
+        return customerService.getAllCustomersList();
     }
 
     @RequestMapping(value = "/filter", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json")

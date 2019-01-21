@@ -24,4 +24,6 @@ public interface GoodRepository extends JpaRepository<Good, Integer> {
 
     Good getGoodByGoodSysId(int goodSysId);
 
+    List<Good> getAllByGoodSysIdIn(List<Integer> goodSysId);
+
 }

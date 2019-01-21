@@ -8,21 +8,30 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Service
 public class DocumentsService {
 
-    @Autowired
-    AuthorizationInKasbiService authorizationInKasbiService;
+    private final AuthorizationInKasbiService authorizationInKasbiService;
+
+    private final ResourceLoader resourceLoader;
 
     @Autowired
-    private ResourceLoader resourceLoader;
+    public DocumentsService(AuthorizationInKasbiService authorizationInKasbiService, ResourceLoader resourceLoader) {
+        this.authorizationInKasbiService = authorizationInKasbiService;
+        this.resourceLoader = resourceLoader;
+    }
 
-    public Resource getDocumentConnection(int cashHistoriesSysId, int goodSysId, int customerSysId) throws IOException {
+    public Resource getDocumentResource(int docNumber, Map<String, Integer> params) throws IOException {
         String hashUrl = authorizationInKasbiService.getHashUrl();
-        System.out.println(hashUrl);
-        Resource resource = resourceLoader.getResource("url:" + ServiceProps.KASBI_REMOTE_PATH + hashUrl + "/documents.aspx?t=32&h=" + cashHistoriesSysId + "&g=" + goodSysId + "&c=" + customerSysId);
-        if(resource.contentLength()>0) throw new EmptyDocumentException();
+        StringBuilder strParams = new StringBuilder();
+        for (Map.Entry<String, Integer> entry :
+                params.entrySet()) {
+            strParams.append("&").append(entry.getKey()).append("=").append(entry.getValue());
+        }
+        Resource resource = resourceLoader.getResource("url:" + ServiceProps.KASBI_REMOTE_PATH + hashUrl + "/documents.aspx?t=" + docNumber + strParams.toString());
+        if (resource.contentLength() > 0) throw new EmptyDocumentException();
         return resource;
     }
 

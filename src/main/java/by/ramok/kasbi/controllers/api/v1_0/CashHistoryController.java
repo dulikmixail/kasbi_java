@@ -16,8 +16,12 @@ import java.util.List;
 @RequestMapping(Props.API_V1_0 + "/cash_histories")
 public class CashHistoryController {
 
+    private final CashHistoryService cashHistoryService;
+
     @Autowired
-    CashHistoryService cashHistoryService;
+    public CashHistoryController(CashHistoryService cashHistoryService) {
+        this.cashHistoryService = cashHistoryService;
+    }
 
     @RequestMapping(value = {"", "/all"}, method = RequestMethod.GET, produces = "application/json")
     public Page<CashHistory> readAll(Pageable pageable) {
@@ -40,6 +44,16 @@ public class CashHistoryController {
     @RequestMapping(value = "/repairs/list", method = RequestMethod.GET, produces = "application/json")
     public List<CashHistory> getRepairsList(@RequestParam String unn) {
         return cashHistoryService.findAllRepairByUnnList(unn);
+    }
+
+    @RequestMapping(value = "/tos", method = RequestMethod.GET, produces = "application/json")
+    public Page<CashHistory> getTOsPage(@RequestParam String unn, Pageable pageable) {
+        return cashHistoryService.findAllTOsByUnnPage(unn, pageable);
+    }
+
+    @RequestMapping(value = "/tos/list", method = RequestMethod.GET, produces = "application/json")
+    public List<CashHistory> getTOsList(@RequestParam String unn) {
+        return cashHistoryService.findAllTOsByUnnList(unn);
     }
 
 }

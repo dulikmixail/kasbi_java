@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -52,6 +53,7 @@ public class Customer {
     private Integer manager;
     private String postAdress;
     private String email;
+    private Timestamp updateDate;
 
     @Id
     @Column(name = "customer_sys_id")
@@ -137,7 +139,9 @@ public class Customer {
     @Column(name = "okpo")
     public String getOkpo() {
         return okpo;
-    }    @JsonIgnore
+    }
+
+    @JsonIgnore
 
 
     public void setOkpo(String okpo) {
@@ -467,6 +471,16 @@ public class Customer {
         this.email = email;
     }
 
+    @Basic
+    @Column(name = "update_date")
+    public Timestamp getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Timestamp updateDate) {
+        this.updateDate = updateDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -512,12 +526,13 @@ public class Customer {
                 Objects.equals(bankSysId, customer.bankSysId) &&
                 Objects.equals(manager, customer.manager) &&
                 Objects.equals(postAdress, customer.postAdress) &&
-                Objects.equals(email, customer.email);
+                Objects.equals(email, customer.email) &&
+                Objects.equals(updateDate, customer.updateDate);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(customerSysId, customerAbr, customerName, boosLastName, boosFirstName, boosPatronymicName, accountant, unn, okpo, zipcode, region, cityAbr, city, streetAbr, address, phone1, phone2, phone3, phone4, taxInspection, imnsSysId, nds, bankCode, bankAccount, bankAddress, registration, branch, dogovor, info, cto, dolg, support, supportSysId, d, alert, idCity, advertiseId, bankSysId, manager, postAdress, email);
+        return Objects.hash(customerSysId, customerAbr, customerName, boosLastName, boosFirstName, boosPatronymicName, accountant, unn, okpo, zipcode, region, cityAbr, city, streetAbr, address, phone1, phone2, phone3, phone4, taxInspection, imnsSysId, nds, bankCode, bankAccount, bankAddress, registration, branch, dogovor, info, cto, dolg, support, supportSysId, d, alert, idCity, advertiseId, bankSysId, manager, postAdress, email, updateDate);
     }
 }
