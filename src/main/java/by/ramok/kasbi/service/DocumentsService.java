@@ -1,6 +1,5 @@
 package by.ramok.kasbi.service;
 
-import by.ramok.kasbi.exceptions.EmptyDocumentException;
 import by.ramok.kasbi.service.properties.ServiceProps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -31,7 +30,7 @@ public class DocumentsService {
             strParams.append("&").append(entry.getKey()).append("=").append(entry.getValue());
         }
         Resource resource = resourceLoader.getResource("url:" + ServiceProps.KASBI_REMOTE_PATH + hashUrl + "/documents.aspx?t=" + docNumber + strParams.toString());
-        if (resource.contentLength() > 0) throw new EmptyDocumentException();
+//        if (resource.contentLength() > 0) throw new EmptyDocumentException();
         return resource;
     }
 

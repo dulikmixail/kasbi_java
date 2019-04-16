@@ -16,8 +16,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class UnnService implements UnnServiceImpl {
 
+    private final UnnRepository unnRepository;
+
     @Autowired
-    private UnnRepository unnRepository;
+    public UnnService(UnnRepository unnRepository) {
+        this.unnRepository = unnRepository;
+    }
 
 
     @Override
